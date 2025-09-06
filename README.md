@@ -27,7 +27,6 @@ Built with **React.js, Node.js, Express, and MongoDB**, it is designed to be **u
 ---
 
 ## 📂 Project Structure
-
 trendhive/
 │
 ├── client/ # Frontend (React.js + Tailwind)
