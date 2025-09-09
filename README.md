@@ -28,33 +28,33 @@ Built with **React.js, Node.js, Express, and MongoDB**, it is designed to be **u
 
 ## 📂 Project Structure
 
+trendhive/
+│
+├── client/                      # Frontend (React.js + Tailwind)
+│   ├── public/                  # Static files
+│   ├── src/
+│   │   ├── assets/              # Images, icons, fonts
+│   │   ├── components/          # Reusable UI components
+│   │   ├── pages/               # Pages (Home, Product, Cart, Login, etc.)
+│   │   ├── context/             # Context API (Auth, Cart)
+│   │   ├── services/            # Axios API calls
+│   │   ├── App.js               # Main app entry
+│   │   └── index.js             # React entry point
+│   └── package.json
+│
+├── server/                      # Backend (Node.js + Express)
+│   ├── config/                  # DB config
+│   ├── controllers/             # Business logic
+│   ├── models/                  # MongoDB schemas (User, Product, Order)
+│   ├── routes/                  # API routes
+│   ├── middleware/              # Auth, error handling
+│   ├── server.js                # Express app entry
+│   ├── .env                     # Environment variables
+│   └── package.json
+│
+└── README.md
 
- trendhive/
- │
- ├── client/                      # Frontend (React.js + Tailwind)
- │   ├── public/                  # Static files
- │   ├── src/
- │   │   ├── assets/              # Images, icons, fonts
- │   │   ├── components/          # Reusable UI components
- │   │   ├── pages/               # Pages (Home, Product, Cart, Login, etc.)
- │   │   ├── context/             # Context API (Auth, Cart)
- │   │   ├── services/            # Axios API calls
- │   │   ├── App.js               # Main app entry
- │   │   └── index.js             # React entry point
- │   └── package.json
- │
- ├── server/                      # Backend (Node.js + Express)
- │   ├── config/                  # DB config
- │   ├── controllers/             # Business logic
- │   ├── models/                  # MongoDB schemas (User, Product, Order)
- │   ├── routes/                  # API routes
- │   ├── middleware/              # Auth, error handling
- │   ├── server.js                # Express app entry
- │   ├── .env                     # Environment variables
- │   └── package.json
- │
- └── README.md
-
+ 
 
 ## ⚡ Getting Started
 
