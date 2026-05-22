@@ -1,270 +1,194 @@
-# 🛍️ TrendHive
+# 🛍️ TrendHive – Ecommerce Website
 
-TrendHive is a modern e-commerce project for beauty, fashion, electronics, skincare, toys, and lifestyle products. The project is organized as a clean full-stack workspace with a dedicated frontend app and backend API.
+**TrendHive** is a modern full-stack e-commerce web application for beauty, fashion, electronics, skincare, toys, and lifestyle products. It delivers a feature-rich, responsive storefront with robust backend APIs, seamless authentication, cart and checkout flows, and an admin dashboard. Built with cutting-edge web technologies, TrendHive is designed for easy deployment and developer productivity in a monorepo structure.
 
-## ✨ Highlights
+---
 
-- 🖥️ Responsive React storefront
-- 🎨 TailwindCSS UI with reusable components
-- 🛒 Cart, wishlist, checkout, product detail, and category pages
-- 🔐 Admin login and admin dashboard screens
-- 🔎 Product search, filtering, and recommendations
-- 🧠 Backend API scaffold with Express and MongoDB support
-- 📦 Sample product fallback when MongoDB is not connected
-- 🧪 Frontend test setup with Vitest
-- 🚀 Root scripts to run frontend and backend together
+## ✨ Features
 
-## 🧱 Project Structure
+- Responsive and modern React + TailwindCSS storefront
+- Product listing, detail, search, filtering, and recommendations
+- Cart, wishlist, secure checkout, and admin dashboard
+- User authentication (register/login)
+- JWT and bcrypt-based security
+- RESTful API built with Node.js, Express, and MongoDB (Mongoose)
+- In-memory products fallback if MongoDB is unavailable
+- Frontend tests with Vitest, code linting
+- One-command concurrent development of frontend & backend
 
-```text
+---
+
+## 🏗️ Project Structure
+
+```
 TrendHive/
-  HiveUI/        # Frontend app: React + Vite + TailwindCSS
-  HiveCore/      # Backend API: Node.js + Express + Mongoose
-  package.json   # Root workspace scripts
-  README.md      # Project documentation
+├── apps/
+│   ├── hive-ui/           # Frontend: React, Vite, TailwindCSS, Zustand, Radix UI/shadcn, Vitest
+│   │   ├── src/
+│   │   │   ├── components/     # Reusable UI components
+│   │   │   ├── pages/          # Route/page files
+│   │   │   ├── store/          # State management (Zustand)
+│   │   │   ├── hooks/          # Custom hooks
+│   │   │   ├── utils/          # Utilities/helpers
+│   │   │   ├── main.tsx
+│   │   │   └── ...
+│   │   ├── public/
+│   │   ├── .env.example
+│   │   ├── package.json
+│   │   └── ...
+│   └── hive-core/          # Backend: Node.js, Express, MongoDB (Mongoose), JWT
+│       ├── src/
+│       │   ├── controllers/    # API route logic
+│       │   ├── models/         # Data models (Mongoose schemas)
+│       │   ├── middleware/     # Express middlewares (auth, error, etc.)
+│       │   ├── routes/         # Express routes (products, auth)
+│       │   ├── utils/          # Utility functions
+│       │   ├── api/            # Handlers for API endpoints
+│       │   └── index.ts
+│       ├── .env.example
+│       ├── package.json
+│       └── ...
+├── packages/              # (optional) Shared code (types, utils) for monorepo
+├── .gitignore
+├── package.json           # Workspace & root dev scripts
+├── README.md
 ```
 
-## 🧰 Tech Stack
-
-**Frontend**
-
-- ⚛️ React
-- ⚡ Vite
-- 🎨 TailwindCSS
-- 🧩 Radix UI / shadcn-style components
-- 🧭 React Router
-- 🗃️ Zustand
-- 🧪 Vitest
-
-**Backend**
-
-- 🟢 Node.js
-- 🚂 Express
-- 🍃 MongoDB with Mongoose
-- 🔑 JWT authentication scaffold
-- 🔒 bcrypt password hashing
-- 🌐 CORS and dotenv
+---
 
 ## 🚀 Getting Started
 
-### 1. Install Dependencies
+### 1. Clone and Install
 
-From the repository root:
+```sh
+git clone https://github.com/im-vishu/TrendHive.git
+cd TrendHive
 
-```bash
 npm install
-npm install --prefix HiveUI
-npm install --prefix HiveCore
+npm install --prefix apps/hive-ui
+npm install --prefix apps/hive-core
 ```
 
-### 2. Configure Backend Environment
+### 2. Backend Environment Setup
 
-Create a backend environment file:
-
-```bash
-cd HiveCore
+```sh
+cd apps/hive-core
 cp .env.example .env
+# Edit .env as needed
 ```
-
-Example values:
-
-```env
+Template:
+```
 PORT=5000
 CLIENT_ORIGIN=http://localhost:8080
 MONGO_URI=mongodb://127.0.0.1:27017/trendhive
 JWT_SECRET=replace-with-a-long-random-secret
 ```
 
-### 3. Run the Project
+### 3. Dev Server
 
-Run frontend and backend together:
-
-```bash
+To run frontend and backend together (from root):
+```sh
 npm run dev
 ```
 
-Run only the frontend:
-
-```bash
+Run frontend only:
+```sh
 npm run dev:ui
 ```
 
-Run only the backend:
-
-```bash
+Run backend only:
+```sh
 npm run dev:core
 ```
 
-## 🌐 Local URLs
+- Frontend: http://localhost:8080
+- Backend: http://localhost:5000
+- API Health: http://localhost:5000/api/health
 
-- 🖥️ Frontend: `http://localhost:8080`
-- 🧠 Backend: `http://localhost:5000`
-- ❤️ Health check: `http://localhost:5000/api/health`
+---
 
-## 📜 Root Scripts
+## 🔌 API Reference
 
-```bash
-npm run dev       # Run HiveUI and HiveCore together
-npm run dev:ui    # Run only HiveUI
-npm run dev:core  # Run only HiveCore
-npm run build     # Build HiveUI
-npm run lint      # Lint HiveUI
-npm run test      # Test HiveUI
-```
+**Health Check**
+- `GET /api/health`
 
-## 🖥️ HiveUI Frontend
+**Products**
+- `GET /api/products`
+- `GET /api/products/:id`
+- `POST /api/products`
+- Examples:  
+  `GET /api/products?category=perfumes`  
+  `GET /api/products?search=serum`
 
-The frontend lives in `HiveUI`.
+**Authentication**
+- `POST /api/auth/register`
+- `POST /api/auth/login`
 
-```bash
-cd HiveUI
-npm run dev
-npm run build
-npm run lint
-npm run test
-```
+---
 
-Frontend features include:
+## 🧪 Verification & Checks
 
-- 🏠 Home page
-- 🧴 Category pages
-- 🛍️ Product detail pages
-- 🛒 Cart drawer
-- 💖 Wishlist
-- 💳 Checkout flow
-- 🔐 Login screen
-- 🛠️ Admin dashboard
-
-## 🧠 HiveCore Backend
-
-The backend lives in `HiveCore`.
-
-```bash
-cd HiveCore
-npm run dev
-```
-
-Backend features include:
-
-- ✅ API health route
-- 📦 Product listing route
-- 🔍 Product detail route
-- ➕ Product creation route
-- 👤 User registration route
-- 🔑 User login route
-- 🍃 MongoDB connection support
-- 📋 In-memory sample products when MongoDB is unavailable
-
-## 🔌 API Routes
-
-### Health
-
-```http
-GET /api/health
-```
-
-### Products
-
-```http
-GET /api/products
-GET /api/products/:id
-POST /api/products
-```
-
-Product query examples:
-
-```http
-GET /api/products?category=perfumes
-GET /api/products?search=serum
-```
-
-### Authentication
-
-```http
-POST /api/auth/register
-POST /api/auth/login
-```
-
-## 🧪 Verification
-
-Frontend checks:
-
-```bash
-cd HiveUI
+**Frontend:**
+```sh
+cd apps/hive-ui
 npm run lint
 npm run test
 npm run build
 ```
 
-Backend smoke check:
-
-```bash
-cd HiveCore
+**Backend:**
+```sh
+cd apps/hive-core
 npm run dev
+# Visit http://localhost:5000/api/health
 ```
 
-Then open:
+---
 
-```text
-http://localhost:5000/api/health
+## 🗄️ Environment & Secrets
+
+- `.env`, `.env.*`, and all env files in subfolders are **gitignored**
+- Example files: `.env.example`, `apps/hive-ui/.env.example`, `apps/hive-core/.env.example`
+
+---
+
+## 🚢 Deployment Advice
+
+- **Frontend (`apps/hive-ui`)**: Deploy to Vercel, Netlify, or any static host
+- **Backend (`apps/hive-core`)**: Deploy to Render, Railway, Fly.io, or a Node-capable server
+- **Database**: Use MongoDB Atlas in production
+
+Update your production backend `.env`:
 ```
-
-## 🗂️ Environment Files
-
-Environment files are ignored by git:
-
-```text
-.env
-.env.*
-HiveUI/.env
-HiveCore/.env
-```
-
-Example files are allowed:
-
-```text
-.env.example
-HiveUI/.env.example
-HiveCore/.env.example
-```
-
-## 🧹 Lovable Cleanup
-
-This project has been cleaned of Lovable-specific references, including:
-
-- 🧼 Lovable HTML metadata
-- 🧼 Lovable Vite tagger plugin
-- 🧼 Lovable dependency references
-- 🧼 Lovable lockfile traces
-
-## 🚢 Deployment Notes
-
-Suggested deployment split:
-
-- 🌍 Deploy `HiveUI` to Vercel, Netlify, or any static frontend host
-- 🧠 Deploy `HiveCore` to Render, Railway, Fly.io, or a Node-capable server
-- 🍃 Use MongoDB Atlas for production database hosting
-
-Before production, set secure environment variables:
-
-```env
 CLIENT_ORIGIN=https://your-frontend-domain.com
 MONGO_URI=your-production-mongodb-uri
 JWT_SECRET=your-production-secret
 ```
 
+---
+
 ## 🤝 Contributing
 
-1. 🍴 Fork the project
-2. 🌿 Create a feature branch
-3. 🛠️ Make your changes
-4. 🧪 Run checks
-5. 📬 Open a pull request
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run lints/tests
+5. Open a Pull Request
+
+---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+[MIT License](LICENSE)
+
+---
 
 ## 👨‍💻 Author
 
-Built with ❤️ by Vishant Chaudhary.
+Built with ❤️ by [Vishant Chaudhary](https://github.com/im-vishu)
+
+---
+
+## 🗂️ Topics
+
+`react` `nodejs` `ecommerce` `jwt` `mongodb` `authentication` `full-stack`
